@@ -6,39 +6,18 @@
 ## 2. Interfaz de usuario de Packet Tracer
 
 ### Medios de transmisión
-![Medios](/Imagenes/Screenshot_1.png)
+![Medios](/Curso%20de%20Cisco%20Packet%20Tracer/Imagenes/Screenshot_1.png)
 
 ### End Devices
-![EndDevices](/Imagenes/Screenshot_2.png)
+![EndDevices](/Curso%20de%20Cisco%20Packet%20Tracer/Imagenes/Screenshot_2.png)
 
 ### Modulos 
 Es posible personalizar el hardware, por ejemplo cambiar de una fast ethernet a un modulo Wifi WPC300N como se ve en la imagen.
 
 💡 Es recomendable apagar la lapto antes hacer el cambio de módulo.
 
-![EndDevices](/Imagenes/Screenshot_3.png)
+![EndDevices](/Curso%20de%20Cisco%20Packet%20Tracer/Imagenes/Screenshot_3.png)
 
-⬇️ [Descargar el ejemplo](/PKT%20Files/Intro%20Packet%20Tracer/Interfaz%20de%20usuario.pkt) 
+⬇️ [Descargar el ejemplo](/Curso%20de%20Cisco%20Packet%20Tracer/Labs/Interfaz%20de%20usuario.pkt) 
 
-## 3. Title tree
-## 4. Title four
-...
 
-<!-- 
-Subrayado digital
-En lugar de escribir todo, usa:
-
-⭐ para lo esencial
-
-⚠️ para errores comunes
-
-💡 para ideas o trucos
-
-⛓ para comandos 
--->
-
-<!-- 
-⭐ VLAN = separa redes lógicas
-⛓ show vlan brief
-⚠️ no funciona si el puerto está en trunk 
--->
