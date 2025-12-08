@@ -13,3 +13,6 @@ Las precauciones que se deben tomar para proteger las comunicaciones por WiFi en
 + Use una conexión VPN siempre que sea posible si está enviando datos confidenciales.
 + Habilite la seguridad en las redes domésticas.
 + Utilice WPA2 o un cifrado superior para mayor seguridad.
+
+### Alizanza Wifi
+Es la organización responsable de probar los dipositivos LAN inalámbricos de diferentes fabricantes.
