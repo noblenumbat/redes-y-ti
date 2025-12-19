@@ -151,3 +151,66 @@ En la práctica, los switches Ethernet de capa 2 utilizan las direcciones MAC qu
 Dominar la estructura y el comportamiento de las tramas es esencial para entender el funcionamiento de la red local.
 
 ![Trama](/Conceptos%20básicos%20de%20redes/Imagenes/Trama-ethernet.png)
+
+## Routing
+
+Con el direccionamiento IPv4 pueden existir varias redes lógicas en una red física, si la porción de red de las direcciones del host correspondiente a la red es diferente. Por ejemplo: tres hosts en una única red local física tienen la misma porción de red en su dirección IPv4 (192.168.18) y otros tres hosts tienen porciones de red diferentes en sus direcciones IPv4 (192.168.5). Los hosts que poseen el mismo número de red en su dirección IPv4 podrán comunicarse entre sí pero no podrán comunicarse con los otros hosts sin utilizar routing.
+
+![Redes-logicas](/Conceptos%20básicos%20de%20redes/Imagenes/Redes-logicas.png)
+
+## DIFUSION
+IPv4 utiliza paquetes de difusión. Sin embargo, no hay paquetes de difusión en IPv6.
+
+Dominio de difusión
+Identifica todos los host del mismo segmento de red.
+
+Tipos de difusión
+Dirigida: la difusión se envia a todos los host de una red especifica.
+Limitada: de manera predeterminada los enrutadores no reenvian difusiones.
+
+Dato clave
+Segmentar las redes puede mejorar el rendimiento de la red al eliminar el exceso de tráfico de difusión.
+
+## MULTIDIFUSIÓN
+Los paquete de multidifusión se envian solo a los host con IPv4 que esten suscritos al grupo de difusión 
+en la IP reservada 224.0.0.5. Los routers que soporten el protocolo OSPF permiten enviar paquetes de multifusión
+a otros enrutadores.
+La dirección IP de multifusión recibe el paquete desde el origen y luego lo envia a cada host suscrito a través
+de la unidifusión.
+
+## TIPOS DE DIRECCIONES IPv4
+
+Públicas
+Son direcciones que se enrutan globalmente entre routeres de ISP
+
+Privadas
+Direcciones usadas en las organizaciones para los host internos.
+
+
+## NAT
+Traduce direcciones privadas a direcciones enrutables en Internet (direcciones públicas).
+Esto generalmente se realiza en el router que conecta la red interna a la red ISP. 
+Las direcciones IPv4 privadas de la intranet de la organización se traducirán a direcciones IPv4 públicas antes de enrutar a Internet.
+
+## CLASES DE REDES
+![Clases-Redes](/Conceptos%20básicos%20de%20redes/Imagenes/Clases%20de%20redes.png)
+
+![Clases-De-Redes](/Conceptos%20básicos%20de%20redes/Imagenes/Clases%20de%20redes1.png)
+
+## DIRECCIONES IPv4 Públicas SON ADMINISTRADAS POR LA IANA  (Autoridad de Números Asignados a Internet)
+Los bloques de direcciones son IP se administran a través de los registros regionales de internet RIR. 
+
+En América latina es LACNIC
+
+En Estado Unidos ARIN
+
+Estas direcciones se enrutan de manera global entre los routers ISP.
+
+## Intervalos de direcciones IP públicas y privadas
+Su dirección IP privada existe dentro de intervalos específicos de direcciones IP privadas que le reserva la Internet Assigned Numbers Authority (IANA), y nunca debería aparecer en Internet. Hay millones de redes privadas repartidas por el mundo y los dispositivos de todas ellas reciben direcciones IP privadas dentro de estos intervalos:
+
+Clase A: 10.0.0.0 — 10.255.255.255
+
+Clase B: 172.16.0.0 — 172.31.255.255 
+
+Clase C: 192.168.0.0 — 192.168.255.255
