@@ -1,0 +1,47 @@
+Install packets rpm on Fedora Workstation
+
+sudo dnf install nombre_paquete.rpm
+
+----------------------------------------------------------------------------------------------
+Ruta de la terminal: Añadiendo atajo personalizado
+
+/usr/bin/ptyxis --new-window 
+
+----------------------------------------------------------------------------------------------
+Forzar apagado fedora desde terminal con block inhibitor activo
+
+sudo systemctl poweroff --force
+
+----------------------------------------------------------------------------------------------
+Instalar Brave
+curl -fsS https://dl.brave.com/install.sh | sh
+
+----------------------------------------------------------------------------------------------
+Instalar Cisco Packet Tracer en Fedora (convirtiendo el deb en rpm)
+
+1) Descargar
+   https://www.netacad.com/es/resources/lab-downloads?courseLang=en-US
+
+2) Instaladno alien
+   sudo dnf install alien
+
+3) Convirtiendo de deb a rpm
+   sudo alien -r CiscoPacketTracer_900_Ubuntu_64bit.deb
+
+4) Instalando el packet tracer
+   sudo dnf install PacketTracer-9.0-2.x86_64.rpm
+
+5) Ruta donde queda instalado el paquete
+   /opt/pt 
+
+6) Instalando la libreria FUSE para correr .AppImage
+   sudo dnf install fuse fuse-libs
+   
+7) Dando permisos de ejecución
+   sudo chmod +x packettracer.AppImage
+   
+8) Ejecutando el paquete 
+   ./packettracer.AppImage
+
+----------------------------------------------------------------------------------------------
+
