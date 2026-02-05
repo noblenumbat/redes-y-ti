@@ -1,0 +1,10 @@
+Comando		Sintaxis Ejemplo		Qué hace
+nslookup	nslookup www.google.com		descubrir la dirección IP de un nombre de dominio
+netstat		netstat				ver conexiones activas
+ipconfig /renew					pedir una nueva dirección
+traceroute					saltos de red en Windows
+tracert						saltos de red en Linux
+ip addr show					es como ipconfig /all
+netstat -r -n					ver mi gateway
+
+
