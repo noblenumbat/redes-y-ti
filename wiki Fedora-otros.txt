@@ -45,3 +45,26 @@ Instalar Cisco Packet Tracer en Fedora (convirtiendo el deb en rpm)
 
 ----------------------------------------------------------------------------------------------
 
+Instalar wireshark en Fedora 43
+
+1) Sincronizar repositorios
+
+2) sudo dnf install wireshark 
+
+3) Configurar permisos de captura
+ 
+   3.1)  Añadir mi usuario al grupo  wireshark 
+         sudo usermod -a -G wireshark $USER
+
+   3.2)  Cerrar sesión y volver a entrar para que los cambios de grupo surtan efecto
+
+   3.3)  Verificar los permisos del motor de captura (para que puedan mostrarse las interfaces)
+         sudo chown root:wireshark /usr/bin/dumpcap
+         sudo chmod 750 /usr/bin/dumpcap
+         sudo setcap cap_net_raw,cap_net_admin+eip /usr/bin/dumpcap
+
+4) Iniciar la aplicación desde la terminal
+
+wireshark &
+
+

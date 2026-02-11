@@ -1,0 +1,10 @@
+Navaja Suiza - Git | GitHub
+
+Halar cambios del repo remoto al local:		Verificar la rama 		git branch
+						Traer los cambios		git pull rama-actual
+						Esto descarga los cambios	git fetch
+						los integra a la rama local	git merge
+						Verificar si sincronizo		git log --oneline --decorate -5
+						O				git status
+						Nota: si hay cambios locales
+						antes de halar cambios remotos	git reset --hard
