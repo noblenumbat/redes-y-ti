@@ -468,3 +468,29 @@ En binario:
 01, 33 → multicast
 
 FF → broadcast
+
+---
+
+# ¿Cómo funciona un servidor DNS?
+
+![paso-1](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/DNS%20Paso1.png)
+![paso-2](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/DNS%20Paso2.png)
+![paso-3](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/DNS%20Paso3.png)
+![paso-4](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/DNS%20Paso4.png)
+![paso-5](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/DNS%20Paso5.png)
+
+Algunos registros DNS:
+
+A - Una dirección IPv4 de un dispositivo final
+
+NS - Un servidor de nombre autoritativo
+
+AAAA - Una dirección IPv6 de un dispositivo final (pronunciado quad-A)
+
+MX - Un registro de intercambio de correo
+
+# Mensajes DHCP
+
+Cuando un dispositivo configurado con DHCP e IPv4 se inicia o se conecta a la red, el cliente transmite un mensaje de detección de DHCP (DHCPDISCOVER) para identificar cualquier servidor de DHCP disponible en la red. Un servidor de DHCP responde con un mensaje de oferta de DHCP (DHCPOFFER), que ofrece una concesión al cliente. El mensaje de oferta contiene la dirección IPv4 y la máscara de subred que se deben asignar, la dirección IPv4 del servidor DNS y la dirección IPv4 del gateway predeterminado. La oferta de concesión también incluye la duración de esta.
+
+![Mensajes-DHCP](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/Mensajes%20DHCP.png)

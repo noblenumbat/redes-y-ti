@@ -1,12 +1,33 @@
+
+Comando de red 
+
 Comando		        Sintaxis Ejemplo		    Qué hace
 nslookup	        nslookup www.google.com		descubrir la dirección IP de un nombre de dominio
 netstat		                			        ver conexiones activas
 ipconfig /renew					                pedir una nueva dirección
-traceroute					                    saltos de red en Windows
 tracert						                    saltos de red en Linux
 ip addr show					                es como ipconfig /all
 netstat -r -n					                ver mi gateway
 netstat -rn					                    ver mi gateway
+arp -d                                          borrar la tabla ARP de un host
+arp -a                                          ver tabla de ARP en un host 
+sudo resolvectl show-cache                      muestra entradas dns en cache
+resolvectl status                               ver servidor dns configurado
+ping -4 "URL"                                   traduce una dirección IPv6 a una direccion IPv4         
+nslookup > set type=mx > cisco.com              identificar servidores de correo       
 
+---
+
+Comando de red en Windows
+traceroute					                    saltos de red en Windows
+ipconfig /displaydns                            muestra entradas dns en cache
+nslookup                                        consulta manual de servidores de nombres
+
+---
+
+Comandos switches y routers CISCO
+
+show mac-address-table                          ver tabla direcciones Mac en un switch 
+show ip arp                                     ver tabla ARP en un router 
 
 
