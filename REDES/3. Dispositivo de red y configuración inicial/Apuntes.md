@@ -494,3 +494,22 @@ MX - Un registro de intercambio de correo
 Cuando un dispositivo configurado con DHCP e IPv4 se inicia o se conecta a la red, el cliente transmite un mensaje de detección de DHCP (DHCPDISCOVER) para identificar cualquier servidor de DHCP disponible en la red. Un servidor de DHCP responde con un mensaje de oferta de DHCP (DHCPOFFER), que ofrece una concesión al cliente. El mensaje de oferta contiene la dirección IPv4 y la máscara de subred que se deben asignar, la dirección IPv4 del servidor DNS y la dirección IPv4 del gateway predeterminado. La oferta de concesión también incluye la duración de esta.
 
 ![Mensajes-DHCP](/REDES/3.%20Dispositivo%20de%20red%20y%20configuración%20inicial/Imagenes/Mensajes%20DHCP.png)
+
+# PUERTOS
+
+PUERTO | PROTOCOLO | APLICACION
+-------|-----------|------------ 
+20		 | TCP       |  FTP Datos
+21		 | TCP       |  FTP Control
+22		 | TCP       |  SSH
+23		 | TCP       |  Telnet
+25		 | TCP       |  SMTP
+53	   | UDP/TCP	 |  Servidor de nombres de dominio
+67	   | UDP		   |  DHCP Servidor
+68	   | UDP		   |  Cliente
+69	   | UDP		   |  TFTP Protocolo trivial de transferencia de archivos
+80	   | TCP		   |  HTTP
+110    | TCP       |  POP3
+143    | TCP       |  IMAP 
+161    | UDP       |  SNMP
+443    | TCP       |  HTTPS
