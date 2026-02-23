@@ -1,0 +1,16 @@
+El comando show cdp neighbors.
+
+R3#show cdp neighbors detail
+
+El comando show cdp neighbors detail muestra la dirección IP de un dispositivo vecino. 
+CDP revelará la dirección IP del vecino, independientemente de que se pueda hacer ping en ese vecino o no. 
+Este comando es muy útil cuando dos routers Cisco no pueden enrutarse a través de su enlace de datos compartido. 
+El comando show cdp neighbors detail lo ayudará a determinar si uno de los vecinos de CDP tiene un error de configuración IP.
+
+El CDP brinda la siguiente información acerca de cada dispositivo vecino de CDP:
+
+	- Identificadores de dispositivos: por ejemplo, el nombre host configurado de un switch.
+	- Lista de direcciones: hasta una dirección de capa de red para cada protocolo admitido.
+	- Identificador de puerto: el nombre del puerto local y remoto en forma de una cadena de caracteres ASCII, como por ejemplo, FastEthernet 0/0.
+	- Lista de capacidades: por ejemplo, si el dispositivo es un router o un switch
+	- Plataforma: plataforma de hardware del dispositivo; por ejemplo, un router Cisco serie 1841.

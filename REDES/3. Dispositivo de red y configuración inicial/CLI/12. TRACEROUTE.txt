@@ -1,0 +1,21 @@
+TRACEROUTE:
+
+tracert
+
+desde simbolo del sistema en Windows permite conocer las rutas de los paquetes ICMP y determinar donde no hay comunicación
+para realizar correciones en la configuración de la red.
+
+ejem C:\tracert 10.1.0.2
+
+traceroute
+
+desde IOS Cisco permite conocer las rutas de los paquetes ICMP y determinar donde no hay comunicación
+para realizar correciones en la configuración de la red.
+
+ejem R1# traceroute 10.1.0.2
+
+o traceroute
+
+sin dirección IP se ejecuta en modo extendido y es posible modificar el tiempo de espera para asegurarnos de que traceroute
+hallé el camino antes de considerar el host de desino como inalcanzable. Esto es bueno cuando la red esta operativa pero
+congestionada.

@@ -1,0 +1,39 @@
+A C T I V A R   S S H 
+
+Paso 1: configurar el nombre de dominio IP
+        El router debe tener un nombre de host exclusivo
+
+	R1(config)# ip domain-name span.com
+
+Paso 2: generar claves secretas unidireccionales.
+        Para que el router cifre el tráfico SSH
+        el módulo determina el tamaño de la clave y se puede configurar de 360 a 2048 bits. 
+        Cuanto más grande es el módulo, más segura es la clave, pero más se tarda en cifrar 
+        y descifrar la información. La longitud mínima de módulo recomendada es de 1024 bits
+
+	crypto key generate rsa general-keys modulus 1024
+
+Paso 3: Verificar o crear una entrada de base de datos local
+        
+	R1(config)# username Bob secret cisco
+
+Paso 4: Habilitar las sesiones SSH entrantes por VTY
+        
+	R1(config)# line vty 0 4    
+	R1(config-line)# transport input ssh
+	R1(config-line)# login local
+	R1(config-line)# exit
+
+Listo! ya se puede acceder remotamente al router por SSH
+
+A C C E D E R   R E M O T A M E N T E   P O R   S S H 
+
+	Desde prompt 
+
+	ssh -l nombre_usuario ip_dispositivo
+        Escribir el password
+	Listo!
+	
+	Ej. C:\>ssh -l Jon 172.16.31.1
+
+ 

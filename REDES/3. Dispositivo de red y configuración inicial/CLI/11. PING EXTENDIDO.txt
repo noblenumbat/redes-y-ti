@@ -1,0 +1,7 @@
+Cisco IOS ofrece un modo “extendido” del comando ping. Se ingresa a este modo escribiendo 
+ping en el modo EXEC privilegiado, sin una dirección IP de destino. 
+A continuación se presenta una serie de peticiones de entrada. 
+Al presionar Intro se aceptan los valores predeterminados indicados. 
+Permite forzar que la dirección de origen para un ping sea por ejem 10.1.1.1; la dirección de origen para un ping estándar sería 209.165.200.226. 
+De esta manera, el administrador de red puede verificar desde el R2 que el R1 tenga la ruta a 10.1.1.0/24.
+Nota: El comando ping ipv6 se utiliza para pings extendidos IPv6.

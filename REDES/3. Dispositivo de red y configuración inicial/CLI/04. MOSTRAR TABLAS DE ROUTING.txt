@@ -1,0 +1,34 @@
+MOSTRAR LA TABLA DE ROUTING DE UN HOST WINDOWS
+
+netstat -r
+
+ó
+
+route print
+--------------------------------------------------------------------------------------------------
+
+VISUALIZAR LA TABLA DE ROUTING IPv4 DEL ROUTER
+R1# show ip route
+
+--------------------------------------------------------------------------------------------------
+REINICIAR O RECARGAR EL IOS DEL ROUTER
+
+Router#reload
+--------------------------------------------------------------------------------------------------
+MOSTRAR INFORMACIÓN SOBRE UNA INTERFACE
+
+Router>show interface gigabit ethernet 0/0
+
+--------------------------------------------------------------------------------------------------
+MOSTRAR INFORMACIÓN SOBRE TODAS LAS INTERFACES DEL ROUTER
+
+Router>show ip interface brief
+
+--------------------------------------------------------------------------------------------------
+MOSTRAR INFORMACIÓN SOBRE LA VERSION DEL IOS DEL ROUTER Y OTROS PARAMETROS
+
+Router#show version
+
+
+
+

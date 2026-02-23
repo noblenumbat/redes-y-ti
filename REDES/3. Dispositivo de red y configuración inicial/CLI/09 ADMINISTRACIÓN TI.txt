@@ -1,0 +1,48 @@
+_________________________________________________________________________________________
+/// M I S   T A R E A S   C O M O   T É C N I C O   D E   T I ///
+_________________________________________________________________________________________
+
+
+C O P I A S   D E   R E S P A L D O   A C T U A L I Z A C I O N E S   Y   P A R C H E S :
+--------------------------------------------------------------------------------------------------------------
+
+- Actualización constante del software antivirus: 
+  Para detectar y eliminar malware
+
+- Descargar las últimas actualizaciones de seguridad del sistema operativo y aplicar parches a todos los sistemas vulnerables:
+  Para evitar el ataque de gusanos 
+
+- La administración de númerosos sistemas creando una imagen de software estándar (sistema operativo y aplicaciones acreditadas cuyo uso este autorizado en los sistemas cliente)
+  Es posible que se deban instalar parches de seguridad actualizados a los sistemas que ya están implementados.
+
+- Administración de parches criticos de seguridad:
+  Crear un servidor central de parches con el que deban comunicarse todos los sistemas después de un periodo establecido.
+  Todo parche que no esté aplicado en un host se descarga automáticamente del servidor de parches y se instala sin que 
+  intervenga el usuario.
+
+S E G U R I D A D   E N   L O S   T E R M I N A L E S :
+--------------------------------------------------------------------------------------------------------------
+
+- Políticas bien documentadas: 
+  Las empresas deben aplicar políticas bien documentadas, y los empleados deben estar al tanto de estas reglas. Se debe capacitar a los empleados sobre el uso correcto de la red. 
+  En general, estas políticas incluyen el uso de software antivirus y la prevención de intrusión de hosts. Las soluciones más integrales de seguridad de terminales dependen del 
+  control de acceso a la red.
+
+D E S C R I P C I Ó N   G E N E R A L   D E   L A   S E G U R I D A D   D E   L O S   D I S P O S I T I V O S :
+--------------------------------------------------------------------------------------------------------------
+
+- Cambiar de inmediato los nombres de usuario y las contraseñas predeterminados.
+
+- Se debe restringir el acceso a los recursos del sistema solamente a las personas que están autorizadas a utilizar dichos recursos.
+
+- Siempre que sea posible, se deben desactivar y desinstalar todos los servicios y las aplicaciones innecesarios.
+
+- Actualizar parches de seguridad de los dispositivos enviados por el fabricante antes de su implementación. A menudo estos dispositivos pasan mucho tiempo en el depósito.
+
+C O N T R A S E Ñ A S  P A R A   P R O T E G E R   L O S   D I S P O S I T I V O S   D E   R E D :
+--------------------------------------------------------------------------------------------------------------
+
+- Implementar contraseñas seguras:
+  Combinación de carácteres alfanuméricos  
+  Combinación de carácteres alfanuméricos, simbolos y un espacio
+  

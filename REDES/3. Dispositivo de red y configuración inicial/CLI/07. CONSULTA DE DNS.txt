@@ -1,0 +1,42 @@
+_____________________________________________________________________
+///VER LA TABLA DE NOMBRES DE DOMINIO REGISTRADOS EN EL ORDENADOR///
+_____________________________________________________________________
+
+ipconfig /displaydns
+
+_____________________________________________________________________
+///OBTENER DIRECCIÓN IP Y ALIAS DE UN DOMINIO DE INTERNET EN WINDOWS Y LINUX///
+_____________________________________________________________________
+
+Conocer el servidor DNS predeterminado
+-------------------------------------
+
+C:\Users\jcastillo>nslookup
+
+Servidor predeterminado:  dns3.telecom.com.co
+Address:  200.21.200.80
+
+-------------------------------------
+
+Escribir el nombre de dominio p. ej. www.google.com
+
+Respuesta no autoritativa:
+Nombre:  www.google.com
+Addresses:  2800:3f0:4005:402::2004
+          216.58.222.196
+
+Salir de nslookup
+-------------------------------------
+exit
+
+-------------------------------------
+Otra forma:
+ 
+C:\Users\jcastillo>nslookup www.google.com
+Servidor:  dns3.telecom.com.co
+Address:  200.21.200.80
+
+Respuesta no autoritativa:
+Nombre:  www.google.com
+Addresses:  2800:3f0:4005:402::2004
+          216.58.222.196

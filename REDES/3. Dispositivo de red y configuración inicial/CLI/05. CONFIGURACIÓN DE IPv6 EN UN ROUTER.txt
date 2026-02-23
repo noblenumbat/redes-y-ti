@@ -1,0 +1,86 @@
+______________________________________________________________________
+///C O N F I G U R A C I Ó N   D E   IPv6   E N   U N   R O U T E R///
+______________________________________________________________________
+
+______________________________________________________________________
+///Configuración dinámica: SLAAC///
+______________________________________________________________________
+
+La configuración automática de dirección independiente del estado (SLAAC) es un método 
+que permite a un dispositivo obtener el prefijo, la longitud de prefijo, la dirección 
+del gateway predeterminado y otra información de un router IPv6 sin utilizar un servidor 
+DHCPv6. Mediante SLAAC, los dispositivos dependen de los mensajes de anuncio de router (RA) 
+de ICMPv6 del router local para obtener la información necesaria.
+
+El routing IPv6 no está habilitado de manera predeterminada. Para habilitar un router 
+como router IPv6, se debe usar el comando de configuración global:
+
+R1(config)# ipv6 unicast-routing. 
+
+______________________________________________________________________
+///CONFIGURACIÓN DE IPv6 EN UN ROUTER///
+______________________________________________________________________
+
+R1(config)#interface gigabitethernet 0/0
+R1(config-if)# ipv6 address 2001:db8:acad:1::1/64
+R1(config-if)# no shutdown
+R1(config-if)# exit
+
+R1(config)#interface gigabitethernet 0/1
+R1(config-if)# ipv6 address 2001:db8:acad:2::1/64
+R1(config-if)# no shutdown
+R1(config-if)# exit
+
+R1(config)# interface serial 0/0/0
+R1(config-if)# ipv6 address 2001:db8:acad:3::1/64
+R1(config-if)# clock rate 56000
+R1(config-if)# no shutdown
+
+
+______________________________________________________________________
+///Configuración de direccción link-Local///
+______________________________________________________________________
+Se configura la misma dirección link-local IPv6 en todas las interfaces del R1. Se puede 
+configurar (esto es un ej FE80::1) FE80::1 en cada enlace, debido a que solamente tiene 
+que ser única en ese enlace (red).
+De manera similar al R1, el router R2 se configura con (esto es un ej FE80::1) FE80::2 
+como la dirección IPv6 link-local en todas las interfaces.
+
+Ejemplo de configuración:
+
+R1(config)# interface gigabitethernet 0/0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# exit
+
+R1(config)# interface gigabitethernet 0/1
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# exit
+
+R1(config)# interface serial 0/0/0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# 
+
+______________________________________________________________________
+///Verificación de la configuración de la dirección IPv6///
+______________________________________________________________________
+
+Muestra un breve resumen del estado de la interfaz
+---------------------------------------------------
+R1# show ipv6 interface brief
+
+
+Muestra la tabla de routing de ipv6
+---------------------------------------------------
+R1# show ipv6 route
+
+
+Verificar la conectividad a la PCx
+---------------------------------------------------
+R1# ping 2001:db8:acad:1::10
+
+
+
+
+
+
+

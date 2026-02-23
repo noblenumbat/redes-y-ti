@@ -1,0 +1,541 @@
+R E S U M E N   C O N F I G U R A C I Ó N   D E   U N   S W I T C H   C I S C O:
+
+Pasos básicos en la configuración de un switch
+Los routers y switches Cisco tienen muchas similitudes. Admiten un sistema operativo similar, estructuras de comandos similares 
+y muchos de los mismos comandos. Asimismo, ambos dispositivos usan los mismos pasos de configuración inicial cuando se implementan en una red.
+Antes de comenzar a configurar un router, revise las tareas iniciales de configuración de un switch que se indican a continuación.
+
+1. L I M I T A C I Ó N   D E   A C C ES O   D E   L O S  D I S P O S I T I V O S
+
+_______________________________________________________
+///1. Configurar el nombre del dispositivo///
+_______________________________________________________
+
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname S1
+
+_______________________________________________________
+///2. Proteger el modo EXEC de usuario///
+_______________________________________________________
+
+S1(config)# line console  0 
+
+S1(config-line)# password cisco
+
+S1(config-line)# login 
+
+_______________________________________________________
+///3. Proteger el acceso remoto por Telnet y SSH///
+_______________________________________________________
+
+S1(config-line)# line vty 0 15
+S1(config-line)# password cisco
+S1(config-line)# login
+S1(config-line)# exit
+
+_______________________________________________________
+///4. Proteger el modo EXEC con privilegios///
+_______________________________________________________
+
+S1(config)# enable secret class
+
+_______________________________________________________
+///5. Proteger todas las contraseñas en el archivo de configuración///
+_______________________________________________________
+
+S1(config)# service password-encryption
+
+_______________________________________________________
+///6. Proporcionar la notificación legal///
+_______________________________________________________
+
+S1(config)# banner motd #No unauthorized access allowed!#
+
+_______________________________________________________
+///7. Configurar la SVI de administración///
+_______________________________________________________
+
+S1(config)# interface vlan1
+S1(config-if)# ip address 192.168.10.50 255.255.255.0
+S1(config-if)# no shutdown
+S1(config-if)# end
+ 
+_______________________________________________________
+///8. Guardar la configuración///
+_______________________________________________________
+
+S1# copy running-config startup-config
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. CONFIGURACIÓN DE UN GATEWAY PREDETERMINADO DE UN SWITCH
+
+S1(config)#ip default-gateway 192.168.10.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EL SISTEMA OPERATIVO INTERNETWORK
+
+El Sistema operativo Internetwork (IOS) de Cisco es un término genérico para la colección de sistemas operativos de red que se utilizan 
+en los dispositivos de red Cisco. Cisco IOS se utiliza en la mayoría de los dispositivos Cisco, independientemente del tamaño o el tipo de dispositivo.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INGRESAR A LA CONFIGURACIÓN GLOBAL DE UN TERMINAL
+
+Switch>enable
+
+Switch#configure terminal
+
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+Switch(config)#
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MODO DE CONFIGURACIÓN DE SUBCONFIGURACIÓN DE LA INTERFACE 
+
+Switch(config)#interface vlan 1
+
+Switch(config-if)#
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+NAVEGACIÓN ENTRE LOS MODOS DEL IOS
+
+Switch>enable
+Switch#disable
+Switch>enable
+--------------------------------------------------------------
+////MODO DE CONFIGURACIÓN GLOBAL///
+--------------------------------------------------------------
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#exit
+Switch#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+--------------------------------------------------------------
+////ACCEDER A UN NÚMERO Y TIPO DE LINEA DE ADMINISTRACIÓN///
+--------------------------------------------------------------
+Switch(config)#line console 0
+Switch(config-line)#exit
+Switch(config)#line vty 0 15
+
+/*
+Puede trasladarse directamente desde un modo de subconfiguración a otro. Note cómo después de 
+seleccionar una interfaz, el comando de petición cambia de (config-line)# a (config-if)#.
+*/
+
+Switch(config-line)#interface vlan 1
+Switch(config-if)#interface fastethernet 0/1
+Switch(config-if)#line console 0
+Switch(config-line)#end
+Switch#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#line console 0
+Switch(config-line)#!^Z
+Switch#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#end
+Switch#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Switch#
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+FUNCIONES DE AYUDA DEL IOS
+
+En cada modo de configuración: presionando ? se muestra la lista de comandos disponibles para cada modo de configuración y subconfiguración.
+Incluso presional parte del comando ejem: in? se muestra la ayuda ó interface ? muestra los argumentos disponibles.
+
+
+CONFIGURAR LA FECHA Y HORA DEL SWITCHE
+
+S1#clock set 10:55:00 12 Oct 2019
+
+Mostrar fecha y hora actual
+
+S1#show clock
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONFIGURAR EL NOMBRE DEL HOST///
+
+Switch(config)#hostname SW-Floor-1
+SW-Floor-1(config)#
+
+
+ELIMINAR EL NOMBRE DE HOST
+
+SW-Floor-1(config)#no hostname
+Switch(config)#
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+P R O T E C C I Ó N   D E   A C C E S O   A D M I N I S T R A T I V O
+
+Cisco IOS puede configurarse para utilizar contraseñas en modo jerárquico y permitir diferentes privilegios de acceso al dispositivo de red.
+
+Protección de acceso administrativo
+-----------------------------------
+-Porteja el acceso a EXEC privilegiado con una contraseña
+-Porteja el acceso a EXEC de usuario con una contraseña
+-Porteja el acceso a Telnet remoto con una contraseña
+
+Otras tareas
+------------------------------------
+-Encripte todas las contraseñas
+-Proporcione notificación legal
+
+Nota: evitar el uso de la misma contraseña para todos los dispositivos
+
+CONFIGURANDO CONTRASEÑAS:
+------------------------------------
+--------------------------------------------------------------
+////CONTRASEÑA DE ACCESO AL MODO PRIVILEGIADO////
+--------------------------------------------------------------
+
+Switch(config)#enable secret class  [ESTO ES UNA CONTRASEÑA ENCRYPTADA]
+
+
+Switch(config)#enable password cl$c0 [ESTO NO ES UNA CONTRASEÑA ENCRIPTADA]
+
+
+--------------------------------------------------------------
+////CONTRASEÑA DE ACCESO AL MODO USUARIO////
+--------------------------------------------------------------
+Para proteger el acceso a EXEC de usuario, el puerto de consola debe estar configurado, como se muestra en la figura 2. Ingrese al modo de 
+configuración de consola de línea con el comando de configuración global line console 0. El cero se utiliza para representar la primera 
+(y en la mayoría de los casos la única) interfaz de consola. Luego, configure la contraseña del modo EXEC de usuario con el comando de 
+contraseña password password . Finalmente, habilite el acceso EXEC de usuario con el comando login. El acceso a la consola ahora requerirá 
+una contraseña antes de poder acceder al modo EXEC del usuario.
+
+Switch(config)#line console 0
+Switch(config-line)#password cisco
+Luego permitir el inicio de sesion
+Switch(config-line)#login
+Switch(config-line)#exit
+
+--------------------------------------------------------------
+////CONTRASEÑA LIENAS DE ACCESO TERMINAL VIRTUAL////
+--------------------------------------------------------------
+Las líneas de terminal virtual (VTY) habilitan el acceso remoto al dispositivo. Para proteger las líneas VTY que se utilizan para SSH y Telnet, 
+ingrese al modo de línea VTY con el comando de configuración global line vty 0 15, como se muestra en la figura 3. Muchos switches de Cisco 
+admiten hasta 16 líneas VTY que se numeran del 0 al 15. Luego, especifique la contraseña de VTY con el comando de contraseña password password . 
+Por último, habilite el acceso a VTY con el comando login.
+
+Switch(config)#line vty 0 15
+Switch(config-line)#password cisco
+Luego permitir el inicio de sesion
+Switch(config-line)#login
+
+--------------------------------------------------------------
+////CONFIGURACIÓN DEL CIFRADO DE CONTRASEÑAS////
+--------------------------------------------------------------
+
+MOSTRAR LAS CONTRASEÑAS QUE HAYAN ENCRIPTADO
+
+Switch#show running-config
+
+Para cifrar las contraseñas, utilice el comando de configuración global service password-encryption. El comando aplica un cifrado débil a todas 
+las contraseñas no cifradas. Este cifrado solo se aplica a las contraseñas del archivo de configuración; no a las contraseñas mientras se envían 
+a través de los medios. El propósito de este comando es evitar que individuos no autorizados vean las contraseñas en el archivo de configuración.
+
+Switch(config)#service password-encryption
+
+--------------------------------------------------------------
+////QUITAR CONSTRASEÑAS////
+--------------------------------------------------------------
+(config)#no enable secret cisco ==> quita la contraseña
+
+
+--------------------------------------------------------------
+////MENSAJES DE AVISO////
+--------------------------------------------------------------
+
+Switch(config)#banner motd "No se permite el acceso no autorizado, los infractores seran procesados con el maximo rigor de la ley!"
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+GUARDAR EL ARCHIVO DE CONFIGURACIÓN DE EJECUCIÓN
+
+startup-config es NVRAM = no volatil
+running-config es RAM   = volatil, el contenido se pierde al apagar el dispositivo
+
+Si se corta la energía al dispositivo o si este se reinicia, se perderán todos los cambios de configuración a menos que se hayan guardado. 
+Para guardar los cambios realizados en la configuración en ejecución en el archivo de configuración de inicio utilice el comando copy running-config 
+startup-config en el modo EXEC privilegiado.
+
+EJEMPLO:
+
+	MySwitche(config)#hostname S1
+	S1(config)#
+
+
+Copio la configuración actual de la ram a la nvram
+
+	S1(config)#exit
+	S1#
+	%SYS-5-CONFIG_I: Configured from console by console
+
+	S1#copy running-config startup-config
+	Destination filename [startup-config]? 
+	Building configuration...
+	[OK]
+	S1#
+
+Miro la ayuda para verificar los directorios
+
+	S1#dir ?
+  	flash:  Directory or file name
+  	nvram:  Directory or file name
+
+
+Verifico el directorio nvram:
+
+	S1#dir nvram:
+	Directory of nvram:/
+
+  	238  -rw-        1009          <no date>  startup-config
+
+	1009 bytes total (237588 bytes free)
+
+Una forma corta de ejecutar el comando de copia (opcional)
+
+	S1#copy run start
+	Destination filename [startup-config]? 
+	Building configuration...
+	[OK]
+
+Para eliminar la configuración en ejecución (si el running-config aun no se ha pasado a la nvram)
+
+	S1#reload
+
+	Desventaja: el dispositivo estará sin conexión, lo que provoca tiempo de inactividad de la red.
+
+Borrar todo el contenido del archivo nvram para borrar toda la configuración del dispositivo
+
+	S1#erase startup-config
+	Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+
+Se recarga el dispositivo para verificar el cambio
+
+	Switch(config)#
+
+Cambio el nombre del host
+
+	Switch(config)#hostname MySwitch
+	MySwitch(config)#
+
+
+Guardo los cambios en la nvram
+
+	MySwitch#copy run start
+	Destination filename [startup-config]? 
+	Building configuration...
+	[OK]
+
+Realizo algunos cambios en la configuración
+
+	MySwitch(config)#line console 0 
+	MySwitch(config-line)#password cisco
+	MySwitch(config-line)#login
+	MySwitch(config-line)#exit
+	MySwitch(config)#hostname S1
+	S1(config)#
+
+Puedo pasar la última configuración de la nvram a la ram
+
+	S1#copy start run
+	Destination filename [running-config]? 
+
+	1080 bytes copied in 0.416 secs (2596 bytes/sec)
+	MySwitch#
+	%SYS-5-CONFIG_I: Configured from console by console
+
+	MySwitch#
+
+
+RESTAURAR EL ARCHIVO DE CONFIGURACIÓN DE UN DISPOSITIVO
+
+Mirar instrucciones en:
+
+D:\UNIVERSIDAD\SEMESTRE VI\REDES DE COMPUTADORES\APUNTES CAPITULOS CURSO CCNA R&S\02 CAP CONFIGURACIÓN DE UN SISTEMA OPERATIVO DE RED.docx
+
+--------------------------------------------------------------
+////MOSTRAR EL CONTENIDO DE LOS ARCHIVOS DE CONFIGURACIÓN////
+--------------------------------------------------------------
+
+show startup-config
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+C O N F I G U R A C I Ó N   D E   L A   I N T E R F A C E   V I R T U A L   D E L   S W I T C H E
+
+Ingresar a la terminal 
+
+Ingresar a la configuración global
+
+Ingresar a la interface VLAN 1
+	Switch(config)#interface VLAN 1
+	Switch(config-if)#
+
+Ingresar ip y subnet
+	Switch(config-if)#ip address 192.168.1.10 255.255.255.0
+
+Activar la comunicación
+	Switch(config-if)#no shutdown
+
+Mostrar la configuración
+	Switch#show run
+
+Mostrar las direcciones asignadas a la interfaces de red
+	Switch#show ip interface brief 
+
+Nota: Está físicamente activa porque la habilitamos con el comando no shutdown. y está
+lógicamente desactivada porque ninguno de los puertos de switch Fast Ethernet que se asignaron a la
+VLAN 1 han aparecido aún. o se encuentran activos o conectados a cualquier dispositivo. Si minimizo esta
+ventana y realizo un vistazo al switch, solo una conexión de consola al puerto de consola se ejecuta desde la
+PC al switch.
+
+Ahora voy acceder a la pestaña Desktop de PC0 para asignar dirección y submascara de red en IP configuration
+
+	192.168.1.100
+	255.255.255.0
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+RESPECTO A LOS PING
+
+En una red real, si puede hacer ping de una
+manera-- por ejemplo, supongamos desde una PC a otra-- pero cuando intenta hacer ping de la manera
+opuesta, ocurre un error en los pings, esto indica que una de las dos PC tiene su firewall de Windows
+activado.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+EVITE LAS BÚSQUEDAS DE DNS NO DESEADAS
+
+Para evitar que el switch intente traducir comandos introducidos de manera incorrecta como si fueran
+nombres de host, desactive la búsqueda del Sistema de nombres de dominios (DNS).
+
+S1(config)# no ip domain-lookup
+S1(config)#
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+MOSTRAR INFORMACIÓN DE SWITCH
+
+S1# show version
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+INICIALIZACIÓN Y RECARGA DE UN SWITCH
+
+Step 1: Conéctese al switch.
+
+Acceda al switch mediante el puerto de consola e ingrese al modo EXEC privilegiado.
+	Switch> enable
+	Switch#
+
+Step 2: Determine si se crearon redes de área local virtuales (VLAN).
+
+Utilice el comando show flash para determinar si se crearon VLAN en el switch.
+	Switch# show flash
+
+	Directory of flash:/
+	2 -rwx 1919 Mar 1 1993 00:06:33 +00:00 private-config.text
+	3 -rwx 1632 Mar 1 1993 00:06:33 +00:00 config.text
+	4 -rwx 13336 Mar 1 1993 00:06:33 +00:00 multiple-fs
+	5 -rwx 11607161 Mar 1 1993 02:37:06 +00:00 c2960-lanbasek9-mz.150-2.SE.bin
+	6 -rwx 616 Mar 1 1993 00:07:13 +00:00 vlan.dat
+	32514048 bytes total (20886528 bytes free)
+	Switch#
+
+Step 3: Elimine el archivo VLAN.
+
+a. Si se encontró el archivo vlan.dat en la memoria flash, elimínelo.
+	Switch# delete vlan.dat
+	Delete filename [vlan.dat]?
+	Se le solicitará que verifique el nombre de archivo.En este momento, puede cambiar el nombre de
+	archivo o, simplemente, presionar Intro si introdujo el nombre de manera correcta.
+
+a. Cuando se le pregunte sobre la eliminación de este archivo, presione Intro para confirmar la eliminación
+(si se presiona cualquier otra tecla, se cancelará la eliminación).
+	Delete flash:/vlan.dat? [confirm]
+	Switch#
+
+Step 4: Elimine el archivo de configuración de inicio.
+
+Utilice el comando erase startup-config para eliminar el archivo de configuración de inicio de la NVRAM.
+Cuando se le pregunte sobre la eliminación del archivo de configuración, presione Intro para confirmar la
+eliminación(si se presiona cualquier otra tecla, se cancelará la operación).
+	Switch# erase startup-config
+	Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+	[OK]
+	Erase of nvram: complete
+	Switch#
+
+Step 5: Recargue el switch.
+
+Vuelva a cargar el switch para eliminar toda información de configuración antigua de la memoria. Cuando se
+le pregunte sobre la recarga del switch, presione Intro para continuar(si se presiona cualquier otra tecla, se
+cancelará la recarga).
+	Switch# reload
+	Proceed with reload? [confirm]
+	Nota: Es posible que reciba un mensaje para guardar la configuración en ejecución antes de volver a
+	cargar el switch. Escriba no y presione Intro.
+	System configuration has been modified. Save? [yes/no]: no
+
+Step 6: Omita el diálogo de configuración inicial.
+
+Una vez que se vuelve a cargar el switch, debe ver una petición de entrada del diálogo de configuración
+inicial. Escriba no en la petición de entrada y presione Intro.
+	Would you like to enter the initial configuration dialog? [yes/no]: no
+	Switch> 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+C O N E X I O N   P O R   T E L N E T
+
+Paso 3: Pruebe y verifique la administración remota del S1.
+Ahora utilizará Telnet para acceder al switch S1 en forma remota mediante la dirección de administración de
+SVI. En esta práctica de laboratorio, la PC-A y el S1 se encuentran uno junto al otro. En una red de
+producción, el switch podría estar en un armario de cableado en el piso superior, mientras que la PC de
+administración podría estar ubicada en la planta baja. Telnet no es un protocolo seguro. Sin embargo, en
+esta práctica de laboratorio lo usará para probar el acceso remoto. Toda la información enviada por Telnet,
+incluidos los comandos y las contraseñas, se envían durante la sesión como texto no cifrado. En las
+prácticas de laboratorio posteriores, usará SSH para acceder a los dispositivos de red en forma remota.
+Nota: Windows 7 no admite Telnet en forma nativa. El administrador debe habilitar este protocolo. Para
+instalar el cliente Telnet, abra una ventana del símbolo del sistema y escriba pkgmgr
+/iu:“TelnetClient”.
+
+C:\Users\NetAcad> pkgmgr /iu:”TelnetClient”
+
+a. Con la ventana del símbolo del sistema abierta en la PC-A, ejecute un comando de Telnet para
+conectarse al S1 a través de la dirección de administración de SVI. La contraseña es cisco.
+
+C:\Users\NetAcad> telnet 192.168.1.2 
+
+b. Salga de la sesión de Telnet escribiendo quit. Volverá al símbolo del sistema de Windows 7.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+

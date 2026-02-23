@@ -1,0 +1,313 @@
+C O N F I G U R A C I Ó N   D E L   R O U T E R:
+
+Pasos básicos en la configuración de un switch
+Los routers y switches Cisco tienen muchas similitudes. Admiten un sistema operativo similar, estructuras de comandos similares 
+y muchos de los mismos comandos. Asimismo, ambos dispositivos usan los mismos pasos de configuración inicial cuando se implementan en una red.
+Antes de comenzar a configurar un router, revise las tareas iniciales de configuración de un switch que se indican a continuación.
+
+R E S U M E N   C O N F I G U R A C I Ó N   D E   U N   S W I T C H   C I S C O
+
+1. L I M I T A C I Ó N   D E   A C C ES O   D E   L O S  D I S P O S I T I V O S
+_______________________________________________________
+///1. Configurar el nombre del dispositivo///
+_______________________________________________________
+
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname S1
+
+_______________________________________________________
+///2. Proteger el modo EXEC de usuario///
+_______________________________________________________
+
+S1(config)# line console  0 
+
+S1(config-line)# password cisco
+
+S1(config-line)# login 
+
+_______________________________________________________
+///3. Proteger el acceso remoto por Telnet y SSH///
+_______________________________________________________
+
+S1(config)# line vty 0 15
+S1(config-line)# password cisco
+S1(config-line)# login
+S1(config-line)# exit
+
+_______________________________________________________
+///4. Proteger el modo EXEC con privilegios///
+_______________________________________________________
+
+S1(config)# enable secret class
+
+_______________________________________________________
+///5. Proteger todas las contraseñas en el archivo de configuración///
+_______________________________________________________
+
+S1(config)# service password-encryption
+
+_______________________________________________________
+///6. Proporcionar la notificación legal///
+_______________________________________________________
+
+S1(config)# banner motd #No unauthorized access allowed!#
+
+_______________________________________________________
+///7. Configurar la SVI de administración///
+_______________________________________________________
+
+S1(config)# interface vlan1
+S1(config-if)# ip address 192.168.10.50 255.255.255.0
+S1(config-if)# no shutdown
+S1(config-if)# end
+
+_______________________________________________________
+///8. Bloquear intentos de inicio de sesión fallidos///
+_______________________________________________________
+
+S1(config)# login block-for 120 attempts 3 within 60
+
+
+_______________________________________________________
+///9. Configurar tiempo de espera de ejecución///
+_______________________________________________________
+
+Los tiempos de espera de ejecución se pueden configurar en los puertos de consola, 
+VTY y auxiliares con el comando exec-timeout en el modo de configuración de línea.
+
+S1(config)# line vty 0 4 
+S1(config-line)# exec-timeout 10
+
+Este comando configura el dispositivo para desconectar a los usuarios inactivos después de 10 minutos.
+
+_______________________________________________________
+///10. Guardar la configuración///
+_______________________________________________________
+
+S1# copy running-config startup-config
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2. C O N F I G U R A C I Ó N   D E   L A S   I N T E R F A C E S   L A N 
+
+_______________________________________________________
+///1. Ingresar a la interfaz///
+_______________________________________________________
+
+R1(config)#interface gigabitethernet 0/0
+
+_______________________________________________________
+///2. Configurar la dirección ip y la submascara de red///
+_______________________________________________________
+
+R1(config-if)#ip address 192.168.10.1 255.255.255.0
+
+_______________________________________________________
+///3. Describir la porción de red a la que pertenece la interfaz///
+_______________________________________________________
+
+R1(config-if)#description LAN-10
+
+_______________________________________________________
+///4. Activar la interfaz///
+_______________________________________________________
+
+R1(config-if)#no shutdown
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. V E R I F I C A C I Ó N   D E   L A   C O N F I G U R A C I Ó N   D E   I N T E R F A Z
+
+R1#show ip interface brief
+
+otros comandos de verificación:
+
+show ip route: Muestra el contenido de la tabla de routing IPv4 que se almacena en la RAM.
+show interfaces: Muestra las estadísticas de todas las interfaces de un dispositivo.
+show ip interface: Muestra las estadísticas IPv4 de todas las interfaces de un router.
+show interface: Muestra información sobre una interfaz especifica. p. ej., Router>show interface gigabit ethernet 0/0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLIC
+Del modo usuario no se puede brincar al modo global
+
+enable = modo # privilegiado
+disabe = modo > usuario
+
+>
+#
+#(config)
+
+---------------------------------------------------------
+Router> enable
+Router# config t (comando de configuración (global) uno por linea)
+
+Nota: para regresar ctrl + Z
+---------------------------------------------------------
+Cambiar el nombre del router
+Router (config)# hostname Jonathan
+Jonathan (config) #
+---------------------------------------------------------
+PARA PONER UNA NOTA EN EL DISPOSITIVO
+Jonathan (config) #banner motd /  
+
+Nota: (la diagonal fue un caracter al azar para comenzar el texto)
+despues de escribir el texto presionar ENTER y escribir el simbolo para finalizar el texto.
+---------------------------------------------------------
+PARA GUARDAR LOS CAMBIOS
+No se pueden guardar los cambios en el modo de configuración global
+Así que:
+
+Nota: para volver a # ctrl + Z ya que configuración global es una instancia de Jonathan#
+
+ctrl +Z para salir y volver al modo privilegiado
+
+Jonathan#copy run start
+
+ó
+
+Jonathan#wr
+---------------------------------------------------------
+PARA SALIR DE ESA PANTALLA
+Desde el modo #exit
+---------------------------------------------------------
+
+
+PONER CONTRASEÑA AL ROUTER
+Jonathan (config)#enable secret cisco
+Nota: cisco es la contraseña
+---------------------------------------------------------
+POR CONTRASEÑA A LA LINEA DE CONSOLA 0
+Jonathan (config)#line console 0
+
+Jonathan(config-line)#password cisco
+Nota: cisco es la contraseña
+
+Luego escribimos login para guardar en la RAM la configuración que llevamos hasta el momento
+Jonathan(config-line)#login
+
+Salir de ese modo con exit
+Jonathan(config-line)#exit
+
+Jonathan (config)#line vty 015
+Nota: establecer contraseña 015 significa que va desde el puerto 0 hasta el puerto 15, es decir 16 puertos del router
+
+Jonathan(config-line)#password cisco
+Jonathan(config-line)#login
+Jonathan(config-line)#exit
+
+ECRIPTAR LAS CONTRASEÑAS EN UN CODIGO HEXADECIMAL
+Jonathan (config)#service password-encryption
+Nota: para volver a # ctrl + Z ya que configuración global es una instancia de Jonathan#
+
+ctrl + Z
+Jonathan#wr
+Jonathan#exit 
+
+MOSTAR LOS DATOS DONDE APARECEN TODOS LOS DATOS DEL ROUTER
+Jonathan#show run
+
+---------------------------------------------------------
+PARA CONOCIMIENTO GENERAL
+PARA CANCELAR EL PROCESO QUE ESTE HACIENDO EL PROGRAMA
+ctrl + shift + 6
+---------------------------------------------------------
+
+ESTABLECER COMUNICACIÓN ENTRE EL ROUTER Y EL SWITCHE
+GigabitEthernet = gi
+FastEthernet = fa
+Jonathan(config)#interface gi 0/0/0
+Jonathan(config-if)#ip address 192.168.10.254 255.255.255.0
+
+ACTIVAR LA COMUNICACIÓN ENTRE EL ROUTER Y EL SWITCHE
+Jonathan(config-if)#no shutdown
+
+SALIR DEL MODO DE CONFIGURACIÓN DE LA INTERFACE
+Jonathan(config-if)#exit
+
+PARA OVIAR ctrl + Z Y GUARDAR EN EL MODO DE CONFIGURACIÓN GLOBAL
+Jonathan(config)#do wr
+
+/////////HASTA ESTE PUNTO YA ESTA TERMINADA LA CONFIGURACIÓN LINEAL EN ROUTER SWITCHE Y PC//////////
+-----------------------------------------------------------------------------------------------------
+C A M B I A R   L A   C O N F I G U R A C I Ó N   D E   L A   I P   D E L   P C
+
+Doble clic a la PC
+
+Clic en la pestaña Desktop
+
+Clic en IP configuration
+-Asignar una ip que este en el mismo grupo que la del router de ejemplo
+ ip   192.168.10.1
+ sub  255.255.255.0
+ Gate 192.168.10.254
+-Cerrar la ventana
+
+////YA QUEDARIA CONECTADO DE FORMA EXITOSA////
+
+Nota: para añadir otro terminal realizar el mismo procedimiento.
+      Si observo cuando se va a hacer la conexión con el medio, aparecen los puertos disponibles FastEthernet del switche
+ 
+-----------------------------------------------------------------------------------------------------
+C O N E C T A R   D O S   R O U T E R S   E N T R E   S Í
+
+Datos 
+Router0 = 192.168.10.254
+Router1 = 192.168.60.254
+
+
+1. Ingresar al router en la pestaña Physical
+2. Tener en cuenta el port serial HWIC-2T o el NIM-2T
+3. Apagar el router
+4. Lo arrastramos a la bahía disponible
+5. Encendemos de nuevo el router
+6. Hacer lo mismo con el otro router
+7. Seleccionamos el cable Serial DCE y hacemos la conexíon del puerto Serial 0/1/0 del Router0 al puerto serial 0/1/0 del Router1 
+8. Ingresar al modo de configuración global del Router1
+9. Ingresar a la configuración de puerto serial 0/1/0
+   Jonathan(config)#interface serial 0/1/0
+10.Jonathan(config-if)#ip address 10.0.0.1 255.255.255.252
+11.Jonathan(config-if)#clock rate 64000 (¿Qué es?)
+12.Jonathan(config-if)#no shutdown
+13.Jonathan(config-if)#exit
+14.Jonathan(config)#do wr
+15.En el Router1 repetir los pasos del 8 al 14, es decir, configurar el puerto serial (ip, sub, etc) y establecer la comunicación
+16.En este momento solo habra comunicación del Router1 al Router0 y no hacia el switche y el terminal del Router0
+17.Ingresar al Router0 para darle la ruta destino del Router1 ip y port serial
+   Jonathan(config)#ip route 192.168.60.0 255.255.255.0 10.0.0.2
+18.Jonathan(config)#do wr
+19.Hacer lo mismo con el Router1
+   Cafe(config)#ip route 192.168.10.0 255.255.255.0 10.0.0.1
+   Cafe(config)#do wr
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+En un router, use el comando show ip route para mostrar la tabla de routing y comprobar que se ha establecido el gateway predeterminado, 
+conocido como ruta predeterminada. 
+
+
+

@@ -1,0 +1,28 @@
+Información MAC de la interface VLAN1
+
+S1# show interfaces vlan1
+
+-----------------------------------------------------------------------------------
+Visualizar información de la dirección MAC de los dispositivos conectados al switch
+
+S1# show arp
+
+-----------------------------------------------------------------------------------
+Ver las direcciones MAC en el switch
+Con el siguiente comando podre saber la dirección de los dispositivos conectados al switch
+así como la interface en la que esta conectado el dispositivo,
+también se puede observar la dirección MAC de difusión en hexadecimal ffff.ffff.ffff.ffff
+
+S1# show mac address-table
+
+-----------------------------------------------------------------------------------
+///MOSTRAR LA DIRECCIÓN MAC DE LA INTERFACE DEL SWITCH///
+-----------------------------------------------------------------------------------
+
+S1# show interface f0/1
+
+-----------------------------------------------------------------------------------
+///BORRAR LA TABLE DE DIRECCIONES MAC DE UN SWITCHE///
+-----------------------------------------------------------------------------------
+
+S1# clear mac addredd-table dynamic

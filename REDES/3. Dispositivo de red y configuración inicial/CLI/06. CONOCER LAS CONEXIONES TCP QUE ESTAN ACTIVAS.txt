@@ -1,0 +1,8 @@
+CONOCER LAS CONEXIONES TCP QUE ESTAN ACTIVAS O QUE ESTAN ABIERTAS
+
+En CMD:
+
+netstat
+
+netstat -n 
+La opción -n se puede utilizar para mostrar direcciones IP y número de puerto en su formato númerico.
