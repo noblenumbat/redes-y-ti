@@ -1,0 +1,77 @@
+CONFIGURACIÓN INICIAL DEL ENRUTADOR
+
+1. Configurar el nombre del dispositivo
+
+En modo de configuración global: configure terminal
+Router(config)# hostname hostname
+
+Todo el acceso al enrutador debe estar asegurado. El modo EXEC privilegiado brinda al usuario acceso completo al dispositivo y su configuración, por lo que debe protegerlo.
+
+Los siguientes comandos aseguran el modo EXEC privilegiado y el modo EXEC de usuario, habilitan el acceso remoto Telnet y SSH y cifran todas las contraseñas de texto sin formato (es decir, EXEC de usuario y línea VTY). Es muy importante utilizar una contraseña segura al proteger el modo EXEC con privilegios, ya que este permite el acceso a la configuración del dispositivo.
+
+2. Proteja el modo EXEC con privilegios
+
+Router(config)# enable secret password
+
+3. Proteger el modo EXEC de usuario
+
+Evita que usuarios no autorizados tengan acceso al modo usuario desde el puerto de consola
+
+Router(config)# line console 0
+Router(config-line)# password password
+Router(config-line)# login
+
+4. Proteger el acceso remoto por Telnet y SSH
+
+Router(config-line)# line vty 0 4
+Router(config-line)# password password
+Router(config-line)# login
+Router(config-line)# transport input {ssh | telnet | none | all} Ejemplo: transport input ssh telnet
+
+5. Proteger todas las contraseñas del archivo de configuración
+
+Router(config-line)# exit
+Router(config)# service password-encryption
+
+---
+
+6. Proporcionar una notificación legal
+
+Router(config)# banner motd #Authorized Access Only!#  
+Nota: el delimintador del mensaje es el # puede ser otro como /
+
+7. Guarde la configuración
+
+Router(config)# copy running-config startup-config
+
+8. Guardar el archivo de configuración en la memora flash del dispositivo
+
+----------------------------------------------------------------------
+ANTES: 3 archivos
+
+
+System flash directory:
+File  Length   Name/status
+  3   486899872isr4300-universalk9.03.16.05.S.155-3.S5-ext.SPA.bin
+  2   28282    sigdef-category.xml
+  1   227537   sigdef-default.xml
+[487155691 bytes used, 2761893909 available, 3249049600 total]
+3.17338e+06K bytes of processor board System flash (Read/Write)
+-----------------------------------------------------------------------
+
+Router# copy startup-config flash
+
+8.1. Verificar que el archivo este guardado en la memoria flash
+Router# show flash
+-----------------------------------------------------------------------
+DESPUES: 4 archivos
+
+
+System flash directory:
+File  Length   Name/status
+  3   486899872isr4300-universalk9.03.16.05.S.155-3.S5-ext.SPA.bin
+  2   28282    sigdef-category.xml
+  1   227537   sigdef-default.xml
+  4   862      startup-config
+[487156553 bytes used, 2761893047 available, 3249049600 total]
+3.17338e+06K bytes of processor board System flash (Read/Write)

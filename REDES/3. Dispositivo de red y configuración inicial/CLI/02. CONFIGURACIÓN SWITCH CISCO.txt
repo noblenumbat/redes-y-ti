@@ -56,22 +56,28 @@ _______________________________________________________
 ///7. Configurar la SVI de administración///
 _______________________________________________________
 
-S1(config)# interface vlan1
+S1(config)# interface vlan 1
 S1(config-if)# ip address 192.168.10.50 255.255.255.0
 S1(config-if)# no shutdown
-S1(config-if)# end
+S1(config-if)# exit
  
+CONFIGURACIÓN DE UN GATEWAY PREDETERMINADO DE UN SWITCH
+
+S1(config)#ip default-gateway 192.168.10.1
+
 _______________________________________________________
 ///8. Guardar la configuración///
 _______________________________________________________
 
 S1# copy running-config startup-config
 
+_______________________________________________________
+///9. Verificar dirección IP en S1///
+_______________________________________________________
+
+S1# show ip interface brief
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-
-2. CONFIGURACIÓN DE UN GATEWAY PREDETERMINADO DE UN SWITCH
-
-S1(config)#ip default-gateway 192.168.10.1
 
 
 

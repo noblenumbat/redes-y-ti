@@ -1,28 +1,55 @@
 A C T I V A R   S S H 
 
-Paso 1: configurar el nombre de dominio IP
+Antes de configurar SSH, el conmutador debe tener configurado, como mínimo, un nombre de host único y los parámetros correctos de conectividad de red.
+
+Paso 1: Verificar la compatibilidad con SSH
+	Usar el comando show ip ssh para verificar que el conmutador admita SSH. Si el conmutador no ejecuta un IOS que admita características 
+	criptográficas, este comando no se reconoce.
+
+Paso 2: configurar el nombre de dominio IP
         El router debe tener un nombre de host exclusivo
 
-	R1(config)# ip domain-name span.com
+	R1(config)# ip domain-name polinet.com
 
-Paso 2: generar claves secretas unidireccionales.
+Paso 3: generar claves secretas unidireccionales.
         Para que el router cifre el tráfico SSH
         el módulo determina el tamaño de la clave y se puede configurar de 360 a 2048 bits. 
         Cuanto más grande es el módulo, más segura es la clave, pero más se tarda en cifrar 
         y descifrar la información. La longitud mínima de módulo recomendada es de 1024 bits
 
-	crypto key generate rsa general-keys modulus 1024
+	crypto key generate rsa 
+	1024
 
-Paso 3: Verificar o crear una entrada de base de datos local
+Paso 4: Crear usuario local ssh. 
         
 	R1(config)# username Bob secret cisco
 
-Paso 4: Habilitar las sesiones SSH entrantes por VTY
+Paso 5: Habilitar las sesiones SSH entrantes por VTY
+	Se deben configurar todas la lineas vty para usar ssh y acceder remotamente con el usuario local.
+	Configure las líneas VTY para que revisen la base de datos local de nombres de usuario en busca de las credenciales de inicio de sesión y para 	
+	que solo permitan el acceso remoto mediante SSH. Elimine la contraseña existente de la línea vty. no password contraseña-que-se-puso
+	
+	-------------otra manera que vi en el apk ------------------
+	R1(config)# line vty 0 4    
+	R1(config-line)# transport input ssh
+	R1(config-line)# no password cisco
+	------------------------------------------------------------
         
 	R1(config)# line vty 0 4    
 	R1(config-line)# transport input ssh
 	R1(config-line)# login local
 	R1(config-line)# exit
+
+Paso 6: Configurar el dispositivo para usar SSH 2.0
+
+	Nota: para verificar la versión ssh del dispositivo: show ip ssh
+
+	De manera predeterminada, SSH admite las versiones 1 y 2. Si se admiten ambas versiones, en el resultado de show ip ssh se muestra que está 			
+	habilitada la versión 1.99. La versión 1 tiene vulnerabilidades conocidas. Por esta razón, se recomienda habilitar únicamente la versión 2. 
+	Habilite la versión de SSH mediante el comando de configuración global ip ssh version 2.
+	
+	R1(config)# ip ssh version 2
+	
 
 Listo! ya se puede acceder remotamente al router por SSH
 
@@ -36,4 +63,7 @@ A C C E D E R   R E M O T A M E N T E   P O R   S S H
 	
 	Ej. C:\>ssh -l Jon 172.16.31.1
 
+ ------------------------------------------------------------------------------------------------------------------------------------------------
+ SE PUEDE ACCEDER A LA CONFIGURACIÓN DEL DISPOSITIVO TAMBIEN POR TELNET PERO NO ES SEGURO YA QUE NO CIFRA CONTRASEÑAS Y DATOS
+ FORMA DE CONEXIÓN A TRAVÉS DEL UN CMD DESDE UN EQUIPO: telnet ip-dispositivo
  

@@ -2,14 +2,14 @@ C O N F I G U R A C I Ó N   D E L   R O U T E R:
 
 Pasos básicos en la configuración de un switch
 Los routers y switches Cisco tienen muchas similitudes. Admiten un sistema operativo similar, estructuras de comandos similares 
-y muchos de los mismos comandos. Asimismo, ambos dispositivos usan los mismos pasos de configuración inicial cuando se implementan en una red.
+y muchos de los mismos comandos. Asi mismo, ambos dispositivos usan los mismos pasos de configuración inicial cuando se implementan en una red.
 Antes de comenzar a configurar un router, revise las tareas iniciales de configuración de un switch que se indican a continuación.
 
 R E S U M E N   C O N F I G U R A C I Ó N   D E   U N   S W I T C H   C I S C O
 
 1. L I M I T A C I Ó N   D E   A C C ES O   D E   L O S  D I S P O S I T I V O S
 _______________________________________________________
-///1. Configurar el nombre del dispositivo///
+///1. Configurar el nombre del dispositivo/// 
 _______________________________________________________
 
 Switch> enable
@@ -36,7 +36,7 @@ S1(config-line)# login
 S1(config-line)# exit
 
 _______________________________________________________
-///4. Proteger el modo EXEC con privilegios///
+///4. Proteger el modo EXEC con privilegios/// 
 _______________________________________________________
 
 S1(config)# enable secret class

@@ -23,11 +23,3 @@ traceroute					                    saltos de red en Windows
 ipconfig /displaydns                            muestra entradas dns en cache
 nslookup                                        consulta manual de servidores de nombres
 
----
-
-Comandos switches y routers CISCO
-
-show mac-address-table                          ver tabla direcciones Mac en un switch 
-show ip arp                                     ver tabla ARP en un router 
-
-

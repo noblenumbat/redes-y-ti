@@ -513,3 +513,74 @@ PUERTO | PROTOCOLO | APLICACION
 143    | TCP       |  IMAP 
 161    | UDP       |  SNMP
 443    | TCP       |  HTTPS
+
+# Navegando entre los modos IOS
+
+Modo EXEC con privilegiado.
+``` 
+Switch> enable
+Switch#
+``` 
+---
+Modo EXEC con de usuario.
+``` 
+Switch# disable
+Switch>
+``` 
+---
+Modo configuración global.
+``` 
+Switch# configure terminal
+Switch(config)#
+``` 
+---
+Salir del modo configuración global.
+``` 
+Switch(config)# exit
+Switch#
+``` 
+---
+Ingresar al modo de subconfiguración de línea para el puerto de consola.
+``` 
+Switch(config)# line console 0
+Switch(config-line)#
+``` 
+---
+Ingresar al modo de subconfiguración de línea VTY con el comando. 
+``` 
+Switch(config)# line vty 0 15
+Switch(config-line)#
+``` 
+---
+Modo subconfiguración de la interfaz VLAN 1
+``` 
+Switch(config)# interface vlan1
+Switch(config-if)# 
+``` 
+---
+Volver al modo de configuración de consola
+``` 
+Switch(config-if)# end 
+Switch(config-line)# 
+```
+
+> [!NOTE]
+>
+> Comandos para volver al modo EXEC privilegiado independientemente del modo de configuración  en el que se encuentre el dispositivo.
+
+- Ctrl-Z
+
+- end 
+
+
+# Comandos switches y routers CISCO
+Modo  |Comando                 | ¿Qué hace?
+------|------------------------| --------------------------------------
+\>    |show mac-address-table  | ver tabla direcciones Mac en un switch 
+\>    |show ip arp             | ver tabla ARP en un router 
+\#    |show running-config     | ver datos de configuración de un router
+\#    |show ip route           | ver información de enrutamiento de Capa 3
+\#    |show version            | verifica la memoria, las interfaces y las licencias del dispositivo
+
+
+
