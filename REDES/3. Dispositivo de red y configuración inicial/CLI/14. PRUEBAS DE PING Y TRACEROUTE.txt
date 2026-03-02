@@ -1,0 +1,15 @@
+PRUEBAS DE PING Y TRACEROUTE
+
+Los tipos de pruebas de conectividad que se realizan con ping son los siguientes:
+
+    Hacer ping al loopback local: Un mensaje de error indica que TCP/IP no funciona en el host.
+    Hacer ping a la puerta de enlace predeterminada
+    Hacer ping al host remoto
+
+TRACEROUTE
+
+Tiempo de ida y vuelta RTT
+
+Si en la pantalla se muestran tiempos de respuesta elevados o pérdidas de datos de un salto en particular, esto constituye un indicio de que los recursos del router o sus conexiones pueden estar sobrecargados.
+
+
