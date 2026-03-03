@@ -67,4 +67,86 @@ Instalar wireshark en Fedora 43
 
 wireshark &
 
+----------------------------------------------------------------------------------------------
+Agregar un segundo adaptador de red en una VM CAJAS
+
+Esto lo hice para crear un laboratorio de Active Directory en una VM con Windows Server 2016
+El modo que configure fue Macvtap: Donde mi host Fedora NO puede comunicarse con la VM, pero otros equipos sí puede.
+Configure este modo porque fue el que me permitió trabajar Fedora.
+
+Pasos de como lo hice:
+
+1. Instale un gestor de maquinas virtuales:
+   sudo dnf install virt-manager
+
+2. Ingrese al gestor maquinas virtuales desde las aplicaciones:
+
+   2.1. Con la VM apagada, hice doble clic sobre ella en virt-manager.
+   2.2. Ingrese a Mostrar detalles del hardware virtual.
+   2.3. Clic en el botón Añadir hardware (abajo a la izquierda).
+   2.4. Selecciona Red en la lista de la izquierda.
+   2.5. Eligi Macvtap
+   2.6. clic en Finalizar. 
+
+3. En la terminal cree y edite un archivo para permitir el uso del segundo adaptador virtual de red, la cual llame privada
+   sudo nano /etc/qemu/bridge.conf
+
+4. Elimine el contenido y añadi la siguiente linea:
+   allow privada
+   
+5. Configure permisos del ejecutable
+   sudo chmod u+s /usr/libexec/qemu-bridge-helper
+   
+6. Configure la lectura del archivo
+   sudo chmod 644 /etc/qemu/bridge.conf
+
+NOTA: esto es un aparte. Para eliminar un puente existente o anterior
+      sudo nmcli con delete poner-aqui-el-nombre-puente-anterior
+
+7. Crear la interfaz bridge
+   # Crear la interfaz bridge llamada 'privada'
+   sudo nmcli con add type bridge con-name privada ifname privada
+
+   # Desactivar el protocolo STP para evitar esperas de conexión
+   sudo nmcli con mod privada bridge.stp no
+
+   # Levantar la interfaz
+   sudo nmcli con up privada
+   
+8. Verificar el bloque XML de la VM, debe verse algo así
+
+   <interface type='bridge'>
+     <source bridge='privada'/>  <!-- Asegúrate de que diga privada -->
+     <model type='e1000e'/>
+   </interface>
+   
+9. Forzar creación y activación de la interfaz.  A veces, nmcli crea la conexión pero no el dispositivo de red en el kernel. 
+   # Elimina cualquier rastro previo para limpiar el estado
+   sudo nmcli con down privada || true
+   sudo nmcli con delete privada || true
+
+   # Crea el puente asegurando que el nombre del dispositivo sea exacto
+   sudo nmcli con add type bridge con-name privada ifname privada
+   sudo nmcli con mod privada bridge.stp no
+   sudo nmcli con up privada
+   
+10. Verificar que la interfaz es visible para el kernel
+    ip link show privada
+    
+    NOTA: Si no aparece, entonces encenderla:
+    sudo ip link set privada up
+
+11. Reinicie el servicio de virtualización
+    sudo systemctl restart libvirtd
+    
+12. Por si las moscas, verificar nuevamente el XML de la VM
+    Verificar el bloque XML de la VM, debe verse algo así
+
+   <interface type='bridge'>
+     <source bridge='privada'/>  <!-- Asegúrate de que diga privada -->
+     <model type='e1000e'/>
+   </interface>
+
+
+	
 
