@@ -147,6 +147,16 @@ NOTA: esto es un aparte. Para eliminar un puente existente o anterior
      <model type='e1000e'/>
    </interface>
 
+----------------------------------------------------------------------------------------------
+Programar apagado
 
+shutdown +m  
+
+donde m es el tiempo en minutos. Ej: shutdown +60
+Permite apagar el equipo en una hora
+
+o 
+shutdown hh:mm 
+para una hora especifica
 	
 
